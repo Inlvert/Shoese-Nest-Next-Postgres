@@ -7,7 +7,7 @@ interface UserAttributes {
   birthday: Date;
   email: string;
   password: string;
-  avatar: string;
+  avatar?: string;
   role: string;
 }
 
@@ -26,41 +26,41 @@ export class User extends Model<UserAttributes, UserCreationAttributes> {
     type: DataType.STRING,
     allowNull: false,
   })
-  firstName: string;
+  declare firstName: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  lastName: string;
+  declare lastName: string;
 
   @Column({
     type: DataType.DATEONLY,
     allowNull: false,
   })
-  birthday: Date;
+  declare birthday: Date;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
     unique: true,
   })
-  email: string;
+  declare email: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  password: string;
+  declare password: string;
 
   @Column({
     type: DataType.STRING,
   })
-  avatar: string;
+  declare avatar?: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  role: string;
+  declare role: string;
 }
