@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './users/model/user.model';
 import { UsersModule } from './users/users.module';
 import { CONSTANTS } from './constants';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { CONSTANTS } from './constants';
       }),
     }),
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
