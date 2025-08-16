@@ -16,4 +16,9 @@ export class UsersController {
   create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.createUser(createUserDto);
   }
+
+  @Get(':email')
+  findOne(email: string): Promise<User | undefined> {
+    return this.usersService.findOne(email);
+  }
 }
