@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { User } from './users/model/user.model';
 import { UsersModule } from './users/users.module';
 import { CONSTANTS } from './constants';
 import { AuthModule } from './auth/auth.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -22,7 +22,9 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    CategoryModule,
   ],
+  // controllers: [CategoryController],
 })
 export class AppModule {}
 
