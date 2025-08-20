@@ -1,4 +1,5 @@
-import { Column, DataType, Table, Model } from 'sequelize-typescript';
+import { Column, DataType, Table, Model, HasMany } from 'sequelize-typescript';
+import { Category } from 'src/category/model/category.model';
 
 interface UserAttributes {
   id: number;
@@ -63,4 +64,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> {
     allowNull: false,
   })
   declare role: string;
+
+  @HasMany(() => Category, { foreignKey: 'userId', sourceKey: 'id' })
+  declare categories: Category[];
 }
