@@ -1,21 +1,14 @@
 import {
   Column,
   DataType,
-  Table,
-  Model,
-  HasMany,
-  BelongsTo,
   ForeignKey,
+  Model,
+  Table,
 } from 'sequelize-typescript';
 import { User } from 'src/users/model/user.model';
 
-interface CategoryAttributes {
-  id: number;
-  title: string;
-}
-
-@Table({ tableName: 'categories' })
-export class Category extends Model {
+@Table({ tableName: 'refresh_tokens' })
+export class RefreshToken extends Model {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -27,16 +20,19 @@ export class Category extends Model {
     type: DataType.STRING,
     allowNull: false,
   })
-  declare title: string;
+  token: string;
 
   @ForeignKey(() => User)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
-    field: 'user_id'
+    field: 'user_id',
   })
   declare userId: number;
 
-  @BelongsTo(() => User, {foreignKey: 'userId', targetKey: 'id'})
-  declare user: User
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  isRevoked: boolean;
 }
