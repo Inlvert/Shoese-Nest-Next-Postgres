@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './model/user.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -19,7 +19,7 @@ export class UsersController {
   }
 
   @Get(':email')
-  findOne(email: string): Promise<User | undefined> {
+  findOne(@Param('email') email: string): Promise<User | undefined> {
     return this.usersService.findOne(email);
   }
 }

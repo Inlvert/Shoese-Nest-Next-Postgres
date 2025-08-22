@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './model/user.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -18,7 +18,7 @@ export class UsersService {
       where: { email: createUserDto.email },
     });
     if (existUser) {
-      throw new Error('user alredy exist');
+      throw new ConflictException('user alredy exist');
     }
 
     const hashedPassword = await argon2.hash(createUserDto.password);
